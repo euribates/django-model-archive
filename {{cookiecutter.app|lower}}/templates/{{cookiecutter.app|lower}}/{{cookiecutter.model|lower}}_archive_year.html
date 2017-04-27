@@ -1,0 +1,25 @@
+{% set app=cookiecutter.app|lower -%}
+{% set App=cookiecutter.app|capitalize -%}
+{% set model=cookiecutter.model|lower -%}
+{% set Model=cookiecutter.model|capitalize -%}
+
+{% raw -%}
+{% extends 'base.html' %}
+{% load comun_filters %}
+
+{% block content %}
+
+<ul>
+{% for d in date_list.all %}
+    <li>
+    
+    {% raw %}
+    <a href="{% url '{% endraw %}{{cookiecutter.app|lower}}:{{cookiecutter.model|lower}}{% raw %}_archive_month' year=d.year month=d.month|stringformat:"02d" %}">
+        {{ d.month|as_mes|capfirst }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+{% endraw -%}
